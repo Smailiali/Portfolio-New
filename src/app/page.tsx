@@ -7,6 +7,8 @@ import CustomCursor from '@/components/CustomCursor'
 import BootSequence from '@/components/BootSequence'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
+import Experience from '@/components/Experience'
+import Projects from '@/components/Projects'
 
 export default function Home() {
   const [bootComplete, setBootComplete] = useState(false)
@@ -21,6 +23,8 @@ export default function Home() {
       <main>
         <Hero isReady={bootComplete} />
         <About />
+        <Experience />
+        <Projects />
       </main>
     </>
   )

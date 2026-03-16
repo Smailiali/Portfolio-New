@@ -1,4 +1,10 @@
-export type ExperienceTag = 'Leadership' | 'AI/ML' | 'IT Infrastructure' | 'Automation'
+export type ExperienceTag =
+  | 'Leadership'
+  | 'Automation'
+  | 'AI/ML'
+  | 'Data Analysis'
+  | 'IT Infrastructure'
+  | 'Support'
 
 export interface Experience {
   id: string
@@ -14,16 +20,16 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: 'smaili-law',
-    company: 'Smaili & Associates Law Firm',
+    company: 'Smaili & Associates',
     role: 'IT & Automation Specialist',
     dateRange: 'Nov 2024 – Present',
     startYear: 2024,
     tags: ['Leadership', 'Automation'],
     location: 'Irvine, CA',
     bullets: [
-      'Led a 4-person data migration from Abacus Law → Caret Legal with zero data loss across thousands of case records.',
-      'Designed an automated workflow system that cut lost/abandoned cases by 75% — saving the firm real revenue.',
-      'Mapped and standardized processes across every team member, turning scattered workflows into repeatable systems.',
+      'Led a 4-person data migration from legacy Abacus Law to Caret Legal — zero data loss across all case records.',
+      'Designed a firm-wide automated workflow system that reduced lost, abandoned, and forgotten cases by 75%.',
+      'Conducted individual workflow assessments with every team member to map and standardize processes across departments.',
     ],
   },
   {
@@ -32,12 +38,11 @@ export const experiences: Experience[] = [
     role: 'Tasker / Query Manager Intern',
     dateRange: 'Mar 2025 – Jul 2025',
     startYear: 2025,
-    tags: ['AI/ML'],
+    tags: ['AI/ML', 'Data Analysis'],
     location: 'Remote',
     bullets: [
-      'Contributed to an AI-powered permitting system for Qatar\'s Ministry of Municipality — reduced permit approval time from 1 month to ~2 hours.',
-      'Used SQL analysis to evaluate task quality and optimize contributor allocation across the pipeline.',
-      'Reviewed and refined AI model outputs to improve accuracy on complex regulatory queries.',
+      "Contributed to an AI-powered permitting system for Qatar's Ministry of Municipalities, cutting permit issuance from 1 month to ~2 hours.",
+      'Used SQL analysis to evaluate task quality, optimize allocation, and align top contributors with critical workloads.',
     ],
   },
   {
@@ -46,12 +51,20 @@ export const experiences: Experience[] = [
     role: 'Junior IT Assistant',
     dateRange: 'Oct 2023 – Oct 2024',
     startYear: 2023,
-    tags: ['IT Infrastructure'],
+    tags: ['IT Infrastructure', 'Support'],
     location: 'Taanayel, Lebanon',
     bullets: [
-      'Supported 50+ hospital staff across hardware, software, and network issues — keeping critical systems online.',
-      'Deployed workstations and rolled out standardized IT policies across departments.',
-      'Diagnosed and resolved network issues under time pressure in a high-stakes medical environment.',
+      "Supported 50+ hospital staff across hardware, software, and network issues in a healthcare environment where downtime isn't an option.",
+      'Deployed new workstations and rolled out IT policies, coordinating across departments for smooth transitions.',
     ],
   },
 ]
+
+export const TAG_STYLES: Record<ExperienceTag, { bg: string; color: string; border: string }> = {
+  Leadership:       { bg: 'rgba(255,179,0,0.10)',  color: '#ffb300', border: 'rgba(255,179,0,0.30)'  },
+  Automation:       { bg: 'rgba(255,179,0,0.07)',  color: '#ffa000', border: 'rgba(255,179,0,0.22)'  },
+  'AI/ML':          { bg: 'rgba(0,229,255,0.10)',  color: '#00e5ff', border: 'rgba(0,229,255,0.30)'  },
+  'Data Analysis':  { bg: 'rgba(167,139,250,0.10)', color: '#a78bfa', border: 'rgba(167,139,250,0.30)' },
+  'IT Infrastructure': { bg: 'rgba(34,197,94,0.10)',  color: '#22c55e', border: 'rgba(34,197,94,0.30)'  },
+  Support:          { bg: 'rgba(34,197,94,0.07)',  color: '#16a34a', border: 'rgba(34,197,94,0.22)'  },
+}
