@@ -259,7 +259,7 @@ function Constellation() {
                   x={n.dx}
                   y={n.dy}
                   textAnchor={n.la}
-                  fontSize={isHovered ? '9.5' : '8'}
+                  fontSize={isHovered ? '13' : '11'}
                   fontFamily="var(--font-mono)"
                   fill={color}
                   opacity={isHovered ? 1 : 0.45}
