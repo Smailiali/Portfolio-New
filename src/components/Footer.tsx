@@ -46,10 +46,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Konami code hint — visible, tasteful */}
+        {/* Konami code hint */}
         <p
           className="font-mono text-center mt-6"
-          style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.06em' }}
+          style={{ fontSize: '0.875rem', color: 'var(--text-muted)', letterSpacing: '0.06em' }}
         >
           <span style={{ opacity: 0.5 }}>{'// '}</span>
           {'↑ ↑ ↓ ↓ ← → ← → B A'}
