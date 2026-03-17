@@ -225,9 +225,9 @@ interface HeroProps {
 
 const TAGLINES = [
   'Software Developer',
-  'Full-Stack Engineer',
-  'AI Solutions Architect',
+  'Problem Solver',
   'Automation Engineer',
+  'Efficiency Obsessed',
 ]
 
 const containerVariants = {
