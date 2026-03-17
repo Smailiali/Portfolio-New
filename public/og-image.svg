@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Left accent bar -->
+  <rect x="80" y="180" width="3" height="270" fill="#00e5ff" opacity="0.9"/>
+
+  <!-- Code comment label -->
+  <text x="104" y="216" font-family="'Courier New', monospace" font-size="18" fill="#00e5ff" opacity="0.7">// portfolio</text>
+
+  <!-- Name -->
+  <text x="104" y="310" font-family="'Courier New', monospace" font-size="72" font-weight="700" fill="#ffffff" letter-spacing="-2">Ali Smaili</text>
+
+  <!-- Title -->
+  <text x="108" y="368" font-family="'Courier New', monospace" font-size="26" fill="#00e5ff" letter-spacing="1">Software Developer</text>
+
+  <!-- Divider -->
+  <rect x="104" y="398" width="420" height="1" fill="#ffffff" opacity="0.1"/>
+
+  <!-- Stack line -->
+  <text x="104" y="432" font-family="'Courier New', monospace" font-size="16" fill="#888888">React · Node.js · TypeScript · AI</text>
+
+  <!-- Location -->
+  <text x="104" y="462" font-family="'Courier New', monospace" font-size="16" fill="#555555">Irvine, CA</text>
+
+  <!-- Right side — decorative initials -->
+  <text x="920" y="380" font-family="'Courier New', monospace" font-size="200" font-weight="700" fill="#00e5ff" opacity="0.04" text-anchor="middle">AS</text>
+
+  <!-- Bottom right — domain hint -->
+  <text x="1120" y="590" font-family="'Courier New', monospace" font-size="14" fill="#333333" text-anchor="end">alismaili.dev</text>
+</svg>
