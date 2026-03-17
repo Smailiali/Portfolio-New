@@ -40,8 +40,8 @@ function StatCard({ target, suffix, label, delay = 0 }: StatCardProps) {
 
 const STATS: StatCardProps[] = [
   { target: 3, suffix: '+', label: 'Years of Experience', delay: 0 },
-  { target: 2, suffix: '', label: 'AI-Powered Apps Built', delay: 0.1 },
-  { target: 75, suffix: '%', label: 'Reduction in Lost Cases', delay: 0.2 },
+  { target: 4, suffix: '', label: 'AI Pipelines Shipped', delay: 0.1 },
+  { target: 75, suffix: '%', label: 'Workflow Efficiency Gain', delay: 0.2 },
   { target: 50, suffix: '+', label: 'Staff Supported', delay: 0.3 },
 ]
 
