@@ -55,6 +55,14 @@ export default function Home() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [matrixActive, setMatrixActive] = useState(false)
 
+  /* Always start at the top — prevents browser scroll restoration mid-page */
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      history.scrollRestoration = 'manual'
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
   const handleBootComplete = useCallback(() => setBootComplete(true), [])
   const openPalette = useCallback(() => setPaletteOpen(true), [])
   const closePalette = useCallback(() => setPaletteOpen(false), [])
