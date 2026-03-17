@@ -46,7 +46,7 @@ const SOCIALS = [
  * 2. Create a new form — set the email to smailikhaledali@gmail.com
  * 3. Copy the form ID (e.g. "xpwzgkab") and paste it below
  */
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
+const FORMSPREE_ID = 'xbdzpdpp'
 const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
