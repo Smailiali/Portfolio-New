@@ -60,16 +60,21 @@ body {
   cursor: none; /* Hide default cursor — replaced by custom cursor */
 }
 
-/* Show default cursor on touch devices */
-@media (hover: none) {
+/* Show default cursor on touch / non-pointer:fine devices */
+@media (hover: none), (pointer: coarse) {
   body {
     cursor: auto;
+  }
+  /* Re-enable pointer cursor for interactive elements on touch */
+  a, button, [role="button"],
+  .btn-primary, .btn-outline, .btn-send-sweep {
+    cursor: pointer;
   }
 }
 
 ::selection {
-  background: var(--accent-glow);
-  color: var(--accent);
+  background: rgba(0, 229, 255, 0.35);
+  color: #000;
 }
 
 /* ============================================
@@ -464,4 +469,120 @@ body::before {
 .contact-input:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--accent), 0 0 12px var(--accent-glow);
+}
+
+/* ============================================
+   KEYBOARD FOCUS RINGS
+   All interactive elements get a visible focus
+   outline using the accent color.
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Suppress focus ring for mouse users (keeps it for keyboard nav) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   ⌘K HINT BADGE — fixed bottom-right pill
+   ============================================ */
+
+/*
+  10-second breathing cycle:
+    0%  →  15%  (1.5s): ease-in glow-up
+   15%  →  30%  (1.5s): ease-out glow-down
+   30%  → 100%  (7s):   holds at rest — no visible change, linear
+*/
+@keyframes cmdBadgeBreathe {
+  0% {
+    box-shadow: 0 0 4px rgba(0, 229, 255, 0.06);
+    border-color: rgba(0, 229, 255, 0.2);
+    animation-timing-function: ease-in;
+  }
+  15% {
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.55), 0 0 36px rgba(0, 229, 255, 0.14);
+    border-color: var(--accent);
+    animation-timing-function: ease-out;
+  }
+  30% {
+    box-shadow: 0 0 4px rgba(0, 229, 255, 0.06);
+    border-color: rgba(0, 229, 255, 0.2);
+    animation-timing-function: linear;
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(0, 229, 255, 0.06);
+    border-color: rgba(0, 229, 255, 0.2);
+  }
+}
+
+.cmd-hint-badge {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: rgba(17, 17, 17, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  padding: 0.35rem 0.75rem;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  backdrop-filter: blur(8px);
+  /* 2s initial delay so it doesn't fire during boot sequence */
+  animation: cmdBadgeBreathe 10s linear 2s infinite;
+  transition: color 0.2s ease, box-shadow 0.15s ease;
+}
+
+.cmd-hint-badge:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.4), 0 0 0 1px rgba(0, 229, 255, 0.1);
+  animation: none; /* freeze on hover — let the CSS transition handle it */
+}
+
+.cmd-hint-badge kbd {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Navbar ⌘K shortcut pill */
+.nav-shortcut-pill {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-shortcut-pill:hover {
+  opacity: 1;
+  color: var(--accent);
+  border-color: var(--border-accent);
+}
+
+/* ============================================
+   COMMAND PALETTE KBD KEYS (footer hints)
+   ============================================ */
+.cp-kbd {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 1px 4px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 3px;
+  margin: 0 2px;
+  color: #666;
 }
