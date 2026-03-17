@@ -219,9 +219,8 @@ export default function CommandPalette({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -8 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="fixed left-1/2 top-[20%]"
+            className="fixed inset-x-0 top-[20%] mx-auto"
             style={{
-              transform: 'translateX(-50%)',
               width: 'min(520px, calc(100vw - 2rem))',
               background: '#111',
               border: '1px solid rgba(0,229,255,0.25)',
