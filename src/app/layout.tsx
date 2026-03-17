@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 }
 
 // TODO: Update this to your actual Vercel/custom domain after deploying
-const SITE_URL = 'https://alismaili.dev'
+const SITE_URL = 'https://portfolio-smailialis-projects.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
