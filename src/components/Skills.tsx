@@ -213,10 +213,16 @@ function Constellation() {
                   : 'opacity 0.22s ease',
               }}
             >
-              <g
-                transform={`translate(${n.x}, ${n.y})`}
-                style={{ animation: floatAnim(n, i) }}
-              >
+              {/*
+                Positioning and animation MUST be on separate <g> elements.
+                CSS `animation` (transform property) overrides SVG `transform`
+                presentation attributes — combining them on one element moves
+                every node to (0,0) when the float animation starts.
+                Middle <g>: absolute position via SVG attribute only (no CSS).
+                Inner <g>:  float animation only (small relative transforms).
+              */}
+              <g transform={`translate(${n.x}, ${n.y})`}>
+              <g style={{ animation: floatAnim(n, i) }}>
                 {/* Hover glow ring */}
                 <circle
                   r={isHovered ? 14 : 0}
@@ -265,7 +271,8 @@ function Constellation() {
                 >
                   {n.label}
                 </text>
-              </g>
+              </g>{/* end animation <g> */}
+              </g>{/* end position <g> */}
             </g>
           )
         })}
@@ -342,7 +349,7 @@ export default function Skills() {
         </motion.p>
 
         <motion.p
-          className="font-sans text-sm mt-2 mb-10"
+          className="font-sans text-sm mt-2 mb-10 hidden sm:block"
           style={{ color: 'var(--text-muted)' }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
