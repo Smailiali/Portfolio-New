@@ -15,6 +15,7 @@ function DocAssistIllustration() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
+      preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
       {/* Background */}
@@ -101,6 +102,7 @@ function DSAMasteryIllustration() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
+      preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
       {/* Background */}
@@ -343,7 +345,7 @@ export default function ProjectCard({ project, reverse = false, index = 0 }: Pro
         {/* ── Mockup pane ── */}
         {/* The SVG illustrations are self-contained browser mockups (include their own
             traffic-light dots and URL bar), so no outer title bar wrapper needed here. */}
-        <div className="lg:w-[55%] border-b lg:border-b-0 border-[var(--border)] relative overflow-hidden bg-[#080808]"
+        <div className="lg:w-[55%] border-b lg:border-b-0 border-[var(--border)] relative overflow-hidden bg-[#080808] aspect-[8/5] lg:aspect-auto"
           style={{ borderRight: reverse ? 'none' : '1px solid var(--border)', borderLeft: reverse ? '1px solid var(--border)' : 'none' }}
         >
           {illustration ?? (
