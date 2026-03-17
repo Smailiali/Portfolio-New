@@ -15,7 +15,7 @@ function DocAssistIllustration() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
     >
       {/* Full base fill — no transparent gaps */}
@@ -141,7 +141,7 @@ function DSAMasteryIllustration() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
     >
       {/* Full base fill */}
