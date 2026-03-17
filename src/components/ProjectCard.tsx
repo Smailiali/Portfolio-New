@@ -11,86 +11,125 @@ import type { Project } from '@/data/projects'
 function DocAssistIllustration() {
   return (
     <svg
-      viewBox="0 0 320 200"
+      viewBox="0 0 440 300"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      {/* Background */}
-      <rect width="320" height="200" fill="#080808" />
+      {/* Full base fill — no transparent gaps */}
+      <rect width="440" height="300" fill="#080808" />
 
-      {/* Browser chrome */}
-      <rect width="320" height="32" fill="#141414" />
-      {/* Traffic lights */}
-      <circle cx="18" cy="16" r="5" fill="#ff5f57" />
-      <circle cx="34" cy="16" r="5" fill="#febc2e" />
-      <circle cx="50" cy="16" r="5" fill="#28c840" />
-      {/* URL bar */}
-      <rect x="68" y="8" width="184" height="16" rx="3" fill="#0d0d0d" stroke="#222" strokeWidth="0.5" />
-      <text x="160" y="19" fill="#555" fontSize="7" textAnchor="middle" fontFamily="monospace">docassist.app</text>
+      {/* ── Browser chrome (y 0–26) ── */}
+      <rect width="440" height="26" fill="#111" />
+      <circle cx="16" cy="13" r="4.5" fill="#ff5f57" />
+      <circle cx="30" cy="13" r="4.5" fill="#febc2e" />
+      <circle cx="44" cy="13" r="4.5" fill="#28c840" />
+      <rect x="62" y="5" width="210" height="16" rx="3" fill="#0d0d0d" stroke="#222" strokeWidth="0.5" />
+      <text x="167" y="16.5" fill="#555" fontSize="7" textAnchor="middle" fontFamily="monospace">docassist.app</text>
 
-      {/* ── Left panel: document viewer ── */}
-      <rect x="0" y="32" width="118" height="168" fill="#0a0a0a" />
-      {/* Doc header bar */}
-      <rect x="10" y="41" width="64" height="7" rx="1.5" fill="#1e1e1e" />
-      <rect x="78" y="41" width="28" height="7" rx="2" fill="#00e5ff15" stroke="#00e5ff30" strokeWidth="0.5" />
-      <text x="92" y="47.5" fill="#00e5ff" fontSize="5.5" textAnchor="middle" fontFamily="monospace">PDF</text>
+      {/* ── Left sidebar (x 0–145, y 26–300) ── */}
+      <rect x="0" y="26" width="145" height="274" fill="#0c0c0c" />
 
-      {/* Text lines */}
-      {[58, 68, 78, 88].map((y, i) => (
-        <rect key={i} x="10" y={y} width={[96, 82, 90, 74][i]} height="4" rx="1" fill="#1e1e1e" />
-      ))}
+      {/* Sidebar header */}
+      <rect x="0" y="26" width="145" height="20" fill="#0f0f0f" />
+      <text x="10" y="39" fill="#555" fontSize="6.5" fontFamily="monospace" letterSpacing="0.08em">DOCUMENTS</text>
+      <rect x="122" y="30" width="14" height="12" rx="2" fill="#00e5ff15" stroke="#00e5ff30" strokeWidth="0.5" />
+      <text x="129" y="39" fill="#00e5ff" fontSize="8" textAnchor="middle" fontFamily="monospace">+</text>
 
-      {/* Highlighted citation block */}
-      <rect x="8" y="100" width="2" height="28" fill="#00e5ff" opacity="0.7" />
-      <rect x="14" y="100" width="94" height="5" rx="1" fill="#00e5ff18" />
-      <rect x="14" y="109" width="88" height="5" rx="1" fill="#00e5ff18" />
-      <rect x="14" y="118" width="72" height="5" rx="1" fill="#00e5ff18" />
+      {/* PDF item 1 — selected */}
+      <rect x="0" y="46" width="145" height="46" fill="#00e5ff08" />
+      <rect x="0" y="46" width="3" height="46" fill="#00e5ff" />
+      <rect x="10" y="54" width="20" height="24" rx="2" fill="#00e5ff18" stroke="#00e5ff35" strokeWidth="0.5" />
+      <text x="20" y="70" fill="#00e5ff" fontSize="6.5" textAnchor="middle" fontFamily="monospace">PDF</text>
+      <rect x="36" y="56" width="96" height="5" rx="1" fill="#2a2a2a" />
+      <rect x="36" y="65" width="70" height="4" rx="1" fill="#1e1e1e" />
+      <text x="36" y="82" fill="#00e5ff" fontSize="5.5" fontFamily="monospace" opacity="0.7">Contract_v3.pdf</text>
 
-      {/* More text lines */}
-      {[132, 142, 152].map((y, i) => (
-        <rect key={i} x="10" y={y} width={[90, 96, 78][i]} height="4" rx="1" fill="#1a1a1a" />
-      ))}
+      {/* PDF item 2 */}
+      <rect x="0" y="92" width="145" height="46" fill="transparent" />
+      <rect x="10" y="100" width="20" height="24" rx="2" fill="#1a1a1a" stroke="#252525" strokeWidth="0.5" />
+      <text x="20" y="116" fill="#444" fontSize="6.5" textAnchor="middle" fontFamily="monospace">PDF</text>
+      <rect x="36" y="102" width="88" height="5" rx="1" fill="#1e1e1e" />
+      <rect x="36" y="111" width="64" height="4" rx="1" fill="#181818" />
+      <text x="36" y="128" fill="#3a3a3a" fontSize="5.5" fontFamily="monospace">NDA_2026.pdf</text>
 
-      {/* Panel divider */}
-      <line x1="118" y1="32" x2="118" y2="200" stroke="#1e1e1e" strokeWidth="1" />
+      {/* PDF item 3 */}
+      <rect x="0" y="138" width="145" height="46" fill="transparent" />
+      <rect x="10" y="146" width="20" height="24" rx="2" fill="#1a1a1a" stroke="#252525" strokeWidth="0.5" />
+      <text x="20" y="162" fill="#444" fontSize="6.5" textAnchor="middle" fontFamily="monospace">PDF</text>
+      <rect x="36" y="148" width="94" height="5" rx="1" fill="#1e1e1e" />
+      <rect x="36" y="157" width="58" height="4" rx="1" fill="#181818" />
+      <text x="36" y="174" fill="#3a3a3a" fontSize="5.5" fontFamily="monospace">Settlement.pdf</text>
 
-      {/* ── Right panel: chat interface ── */}
-      <rect x="118" y="32" width="202" height="168" fill="#080808" />
+      {/* PDF item 4 */}
+      <rect x="0" y="184" width="145" height="46" fill="transparent" />
+      <rect x="10" y="192" width="20" height="24" rx="2" fill="#1a1a1a" stroke="#252525" strokeWidth="0.5" />
+      <text x="20" y="208" fill="#444" fontSize="6.5" textAnchor="middle" fontFamily="monospace">PDF</text>
+      <rect x="36" y="194" width="80" height="5" rx="1" fill="#1e1e1e" />
+      <rect x="36" y="203" width="68" height="4" rx="1" fill="#181818" />
+      <text x="36" y="220" fill="#3a3a3a" fontSize="5.5" fontFamily="monospace">Lease_Draft.pdf</text>
+
+      {/* Sidebar footer — upload button, fills to y=300 */}
+      <rect x="0" y="230" width="145" height="70" fill="#0a0a0a" />
+      <rect x="8" y="240" width="129" height="24" rx="3" fill="#141414" stroke="#1e1e1e" strokeWidth="0.5" />
+      <text x="72" y="256" fill="#444" fontSize="6.5" textAnchor="middle" fontFamily="monospace">+ Upload document</text>
+
+      {/* Sidebar divider */}
+      <line x1="145" y1="26" x2="145" y2="300" stroke="#1e1e1e" strokeWidth="1" />
+
+      {/* ── Right chat panel (x 145–440, y 26–300) ── */}
+      <rect x="145" y="26" width="295" height="274" fill="#080808" />
 
       {/* Chat header */}
-      <rect x="126" y="38" width="80" height="8" rx="2" fill="#111" />
-      <circle cx="216" cy="42" r="4" fill="#00e5ff" opacity="0.5" />
-      <rect x="222" y="39" width="36" height="6" rx="1" fill="#1e1e1e" />
+      <rect x="145" y="26" width="295" height="26" fill="#0c0c0c" />
+      <circle cx="163" cy="39" r="5.5" fill="#00e5ff" opacity="0.55" />
+      <rect x="176" y="34" width="72" height="5" rx="1" fill="#1e1e1e" />
+      <rect x="176" y="43" width="48" height="4" rx="1" fill="#161616" />
+      <rect x="396" y="31" width="36" height="18" rx="3" fill="#00e5ff12" stroke="#00e5ff22" strokeWidth="0.5" />
+      <text x="414" y="43" fill="#00e5ff" fontSize="6" textAnchor="middle" fontFamily="monospace">Clear</text>
 
-      {/* User message bubble (right) */}
-      <rect x="196" y="56" width="116" height="26" rx="4" fill="#161616" stroke="#222" strokeWidth="0.5" />
-      <rect x="204" y="63" width="100" height="4" rx="1" fill="#2e2e2e" />
-      <rect x="204" y="71" width="82" height="4" rx="1" fill="#2e2e2e" />
+      {/* User message 1 — right */}
+      <rect x="270" y="62" width="162" height="32" rx="4" fill="#161616" stroke="#232323" strokeWidth="0.5" />
+      <rect x="280" y="70" width="144" height="5" rx="1" fill="#2a2a2a" />
+      <rect x="280" y="79" width="114" height="4" rx="1" fill="#212121" />
+      <rect x="280" y="87" width="86" height="4" rx="1" fill="#1c1c1c" />
 
-      {/* AI response bubble (left) */}
-      <rect x="126" y="92" width="148" height="44" rx="4" fill="#001a1a" stroke="#00e5ff25" strokeWidth="0.5" />
-      {/* AI icon */}
-      <circle cx="138" cy="100" r="4" fill="#00e5ff" opacity="0.6" />
-      <rect x="148" y="97" width="116" height="4" rx="1" fill="#00e5ff35" />
-      <rect x="148" y="105" width="100" height="4" rx="1" fill="#00e5ff28" />
-      <rect x="148" y="113" width="80" height="4" rx="1" fill="#00e5ff20" />
-      {/* Page citation badge */}
-      <rect x="148" y="122" width="34" height="9" rx="2" fill="#00e5ff20" stroke="#00e5ff40" strokeWidth="0.5" />
-      <text x="165" y="129.5" fill="#00e5ff" fontSize="5.5" textAnchor="middle" fontFamily="monospace">↗ p.12</text>
+      {/* AI response 1 — left with citation */}
+      <rect x="153" y="104" width="196" height="58" rx="4" fill="#001c1c" stroke="#00e5ff1e" strokeWidth="0.5" />
+      <circle cx="167" cy="118" r="5.5" fill="#00e5ff" opacity="0.5" />
+      <rect x="180" y="113" width="148" height="5" rx="1" fill="#00e5ff2e" />
+      <rect x="180" y="122" width="162" height="4" rx="1" fill="#00e5ff22" />
+      <rect x="180" y="131" width="130" height="4" rx="1" fill="#00e5ff18" />
+      <rect x="180" y="140" width="100" height="4" rx="1" fill="#00e5ff12" />
+      {/* Citations */}
+      <rect x="180" y="150" width="44" height="9" rx="2" fill="#00e5ff20" stroke="#00e5ff40" strokeWidth="0.5" />
+      <text x="202" y="157" fill="#00e5ff" fontSize="6" textAnchor="middle" fontFamily="monospace">↗ p.12</text>
+      <rect x="230" y="150" width="40" height="9" rx="2" fill="#00e5ff10" stroke="#00e5ff25" strokeWidth="0.5" />
+      <text x="250" y="157" fill="#00e5ff" fontSize="6" textAnchor="middle" fontFamily="monospace">p.28</text>
 
-      {/* Second user message */}
-      <rect x="220" y="148" width="92" height="16" rx="4" fill="#161616" stroke="#222" strokeWidth="0.5" />
-      <rect x="228" y="154" width="76" height="4" rx="1" fill="#2e2e2e" />
+      {/* User message 2 — right */}
+      <rect x="296" y="172" width="136" height="26" rx="4" fill="#161616" stroke="#232323" strokeWidth="0.5" />
+      <rect x="306" y="180" width="118" height="5" rx="1" fill="#2a2a2a" />
+      <rect x="306" y="189" width="88" height="4" rx="1" fill="#1c1c1c" />
 
-      {/* Input bar */}
-      <rect x="126" y="174" width="184" height="18" rx="3" fill="#0f0f0f" stroke="#1e1e1e" strokeWidth="0.5" />
-      <rect x="134" y="180" width="100" height="4" rx="1" fill="#1e1e1e" />
-      {/* Send button */}
-      <rect x="296" y="175" width="16" height="16" rx="3" fill="#00e5ff20" stroke="#00e5ff40" strokeWidth="0.5" />
-      <text x="304" y="186" fill="#00e5ff" fontSize="8" textAnchor="middle">›</text>
+      {/* AI response 2 — left */}
+      <rect x="153" y="208" width="188" height="46" rx="4" fill="#001c1c" stroke="#00e5ff1e" strokeWidth="0.5" />
+      <circle cx="167" cy="222" r="5.5" fill="#00e5ff" opacity="0.5" />
+      <rect x="180" y="217" width="152" height="5" rx="1" fill="#00e5ff2e" />
+      <rect x="180" y="226" width="140" height="4" rx="1" fill="#00e5ff22" />
+      <rect x="180" y="235" width="108" height="4" rx="1" fill="#00e5ff18" />
+      <rect x="180" y="244" width="42" height="9" rx="2" fill="#00e5ff20" stroke="#00e5ff40" strokeWidth="0.5" />
+      <text x="201" y="251" fill="#00e5ff" fontSize="6" textAnchor="middle" fontFamily="monospace">↗ p.7</text>
+
+      {/* Input bar — fills panel to y=300 */}
+      <rect x="145" y="262" width="295" height="38" fill="#0c0c0c" />
+      <rect x="153" y="269" width="224" height="24" rx="4" fill="#111" stroke="#1e1e1e" strokeWidth="0.5" />
+      <rect x="163" y="278" width="110" height="4" rx="1" fill="#1e1e1e" />
+      <rect x="275" y="276" width="1.5" height="8" rx="0.5" fill="#00e5ff" opacity="0.65" />
+      <rect x="383" y="269" width="50" height="24" rx="4" fill="#00e5ff1a" stroke="#00e5ff35" strokeWidth="0.5" />
+      <text x="408" y="285" fill="#00e5ff" fontSize="7" textAnchor="middle" fontFamily="monospace">Send ›</text>
     </svg>
   )
 }
@@ -98,115 +137,147 @@ function DocAssistIllustration() {
 function DSAMasteryIllustration() {
   return (
     <svg
-      viewBox="0 0 320 200"
+      viewBox="0 0 440 300"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      {/* Background */}
-      <rect width="320" height="200" fill="#080808" />
+      {/* Full base fill */}
+      <rect width="440" height="300" fill="#080808" />
 
-      {/* Browser chrome */}
-      <rect width="320" height="32" fill="#141414" />
-      <circle cx="18" cy="16" r="5" fill="#ff5f57" />
-      <circle cx="34" cy="16" r="5" fill="#febc2e" />
-      <circle cx="50" cy="16" r="5" fill="#28c840" />
-      <rect x="68" y="8" width="184" height="16" rx="3" fill="#0d0d0d" stroke="#222" strokeWidth="0.5" />
-      <text x="160" y="19" fill="#555" fontSize="7" textAnchor="middle" fontFamily="monospace">dsa-mastery.app</text>
+      {/* ── Browser chrome (y 0–26) ── */}
+      <rect width="440" height="26" fill="#111" />
+      <circle cx="16" cy="13" r="4.5" fill="#ff5f57" />
+      <circle cx="30" cy="13" r="4.5" fill="#febc2e" />
+      <circle cx="44" cy="13" r="4.5" fill="#28c840" />
+      <rect x="62" y="5" width="210" height="16" rx="3" fill="#0d0d0d" stroke="#222" strokeWidth="0.5" />
+      <text x="167" y="16.5" fill="#555" fontSize="7" textAnchor="middle" fontFamily="monospace">dsa-mastery.app</text>
 
-      {/* ── Left panel: problem list ── */}
-      <rect x="0" y="32" width="120" height="168" fill="#0a0a0a" />
+      {/* ── Left sidebar (x 0–155, y 26–300) ── */}
+      <rect x="0" y="26" width="155" height="274" fill="#0c0c0c" />
 
-      {/* Stats row */}
-      <rect x="8" y="40" width="50" height="8" rx="1.5" fill="#ffb30015" />
-      <text x="33" y="47" fill="#ffb300" fontSize="6" textAnchor="middle" fontFamily="monospace">65+ Problems</text>
-
-      {/* Stat badges */}
-      <rect x="8" y="54" width="32" height="18" rx="2" fill="#0d0d0d" stroke="#222" strokeWidth="0.5" />
-      <text x="24" y="61" fill="#ffb300" fontSize="8" textAnchor="middle" fontFamily="monospace" fontWeight="bold">65+</text>
-      <text x="24" y="69" fill="#555" fontSize="4.5" textAnchor="middle" fontFamily="monospace">probs</text>
-      <rect x="46" y="54" width="32" height="18" rx="2" fill="#0d0d0d" stroke="#222" strokeWidth="0.5" />
-      <text x="62" y="61" fill="#00e5ff" fontSize="8" textAnchor="middle" fontFamily="monospace" fontWeight="bold">22</text>
-      <text x="62" y="69" fill="#555" fontSize="4.5" textAnchor="middle" fontFamily="monospace">topics</text>
+      {/* Stats bar */}
+      <rect x="0" y="26" width="155" height="42" fill="#0f0f0f" />
+      <rect x="8" y="32" width="66" height="14" rx="2" fill="#ffb30012" />
+      <text x="41" y="42" fill="#ffb300" fontSize="6.5" textAnchor="middle" fontFamily="monospace">65+ Problems</text>
+      <rect x="82" y="32" width="64" height="14" rx="2" fill="#00e5ff0e" />
+      <text x="114" y="42" fill="#00e5ff" fontSize="6.5" textAnchor="middle" fontFamily="monospace">22 Topics</text>
 
       {/* Progress bar */}
-      <rect x="8" y="78" width="104" height="4" rx="2" fill="#111" />
-      <rect x="8" y="78" width="72" height="4" rx="2" fill="#ffb300" opacity="0.7" />
-      <text x="8" y="89" fill="#555" fontSize="5" fontFamily="monospace">22/30 completed</text>
+      <rect x="8" y="52" width="139" height="5" rx="2.5" fill="#1a1a1a" />
+      <rect x="8" y="52" width="96" height="5" rx="2.5" fill="#ffb300" opacity="0.6" />
+      <text x="8" y="65" fill="#444" fontSize="5.5" fontFamily="monospace">22 / 30 completed</text>
 
-      {/* Problem list items */}
+      {/* Divider */}
+      <rect x="0" y="68" width="155" height="1" fill="#1a1a1a" />
+
+      {/* Problem items — each 38px tall, 5 items = 190px, fills 68–258 */}
       {[
-        { y: 96, label: 'Two Sum', diff: 'Easy', diffColor: '#00e5ff', bg: '#00e5ff12', done: true },
-        { y: 116, label: 'Merge Intervals', diff: 'Med', diffColor: '#ffb300', bg: '#ffb30008', done: false },
-        { y: 136, label: 'LRU Cache', diff: 'Hard', diffColor: '#ff5f57', bg: '#ff5f5708', done: false },
-        { y: 156, label: 'Dijkstra\'s Algo', diff: 'Hard', diffColor: '#ff5f57', bg: 'transparent', done: false },
-      ].map((item, i) => (
-        <g key={i}>
-          <rect x="8" y={item.y} width="104" height="16" rx="2" fill={item.bg} stroke={i === 0 ? '#00e5ff20' : '#1a1a1a'} strokeWidth="0.5" />
-          <circle cx="18" cy={item.y + 8} r="3" fill={item.done ? '#00e5ff' : '#2a2a2a'} />
-          <rect x="26" y={item.y + 5} width={item.done ? 48 : 44} height="4" rx="1" fill={item.done ? '#00e5ff35' : '#2a2a2a'} />
-          <rect x="86" y={item.y + 3} width="22" height="10" rx="2" fill={`${item.diffColor}20`} />
-          <text x="97" y={item.y + 10.5} fill={item.diffColor} fontSize="5" textAnchor="middle" fontFamily="monospace">{item.diff}</text>
-        </g>
-      ))}
+        { label: 'Two Sum',         diff: 'Easy', dc: '#00e5ff', done: true,  sel: true  },
+        { label: 'Merge Intervals', diff: 'Med',  dc: '#ffb300', done: false, sel: false },
+        { label: 'LRU Cache',       diff: 'Hard', dc: '#ff5f57', done: false, sel: false },
+        { label: "Dijkstra's",      diff: 'Hard', dc: '#ff5f57', done: false, sel: false },
+        { label: 'Binary Search',   diff: 'Easy', dc: '#00e5ff', done: false, sel: false },
+      ].map((item, i) => {
+        const y = 69 + i * 38
+        return (
+          <g key={i}>
+            <rect x="0" y={y} width="155" height="38" fill={item.sel ? '#00e5ff07' : 'transparent'} />
+            {item.sel && <rect x="0" y={y} width="3" height="38" fill="#00e5ff" />}
+            <circle cx="16" cy={y + 19} r="5" fill={item.done ? '#00e5ff' : '#222'} stroke={item.done ? 'none' : '#333'} strokeWidth="0.5" />
+            {item.done && <text x="16" y={y + 22.5} fill="#000" fontSize="7" textAnchor="middle" fontFamily="monospace">✓</text>}
+            <rect x="28" y={y + 10} width={item.sel ? 82 : 76} height="6" rx="1.5" fill={item.sel ? '#00e5ff28' : '#1e1e1e'} />
+            <rect x="28" y={y + 20} width="60" height="4" rx="1" fill="#181818" />
+            <rect x="120" y={y + 12} width="28" height="14" rx="2.5" fill={`${item.dc}18`} />
+            <text x="134" y={y + 22} fill={item.dc} fontSize="5.5" textAnchor="middle" fontFamily="monospace">{item.diff}</text>
+          </g>
+        )
+      })}
 
-      {/* Panel divider */}
-      <line x1="120" y1="32" x2="120" y2="200" stroke="#1e1e1e" strokeWidth="1" />
+      {/* Sidebar bottom — spaced repetition hint, fills to y=300 */}
+      <rect x="0" y="259" width="155" height="41" fill="#0a0a0a" />
+      <rect x="8" y="266" width="139" height="26" rx="3" fill="#111" stroke="#1e1e1e" strokeWidth="0.5" />
+      <circle cx="22" cy="279" r="5" fill="#ffb300" opacity="0.45" />
+      <rect x="34" y="274" width="64" height="5" rx="1" fill="#ffb30028" />
+      <rect x="34" y="283" width="82" height="4" rx="1" fill="#1e1e1e" />
+      <text x="124" y="283" fill="#ffb300" fontSize="6" fontFamily="monospace">SM-2</text>
 
-      {/* ── Right panel: code editor ── */}
-      <rect x="120" y="32" width="200" height="168" fill="#060606" />
+      {/* Left panel divider */}
+      <line x1="155" y1="26" x2="155" y2="300" stroke="#1a1a1a" strokeWidth="1" />
+
+      {/* ── Right panel — code editor (x 155–440, y 26–300) ── */}
+      <rect x="155" y="26" width="285" height="274" fill="#060606" />
+
+      {/* Tabs bar */}
+      <rect x="155" y="26" width="285" height="22" fill="#0d0d0d" />
+      <rect x="161" y="28" width="82" height="18" rx="2" fill="#080808" stroke="#1a1a1a" strokeWidth="0.5" />
+      <text x="170" y="40" fill="#ccc" fontSize="6.5" fontFamily="monospace">solution.js</text>
+      <text x="252" y="40" fill="#3a3a3a" fontSize="6.5" fontFamily="monospace">notes.md</text>
+      <text x="310" y="40" fill="#3a3a3a" fontSize="6.5" fontFamily="monospace">tests.js</text>
 
       {/* Line number gutter */}
-      <rect x="120" y="32" width="20" height="168" fill="#0a0a0a" />
-      {[40, 52, 64, 76, 88, 100, 112, 124].map((y, i) => (
-        <text key={i} x="135" y={y + 4} fill="#2a2a2a" fontSize="6" textAnchor="end" fontFamily="monospace">{i + 1}</text>
+      <rect x="155" y="48" width="24" height="220" fill="#0a0a0a" />
+      {Array.from({ length: 13 }, (_, i) => (
+        <text key={i} x="174" y={60 + i * 16} fill="#2a2a2a" fontSize="6" textAnchor="end" fontFamily="monospace">{i + 1}</text>
       ))}
 
-      {/* Code lines (syntax highlighted) */}
-      {/* function twoSum */}
-      <rect x="146" y="38" width="28" height="5" rx="1" fill="#569cd660" />
-      <rect x="178" y="38" width="36" height="5" rx="1" fill="#9cdcfe50" />
-      <rect x="218" y="38" width="12" height="5" rx="1" fill="#6b728060" />
+      {/* Code lines */}
+      {/* Line 1: function twoSum(nums, target) { */}
+      <rect x="186" y="52" width="32" height="6" rx="1" fill="#569cd660" />
+      <rect x="222" y="52" width="52" height="6" rx="1" fill="#9cdcfe55" />
+      <rect x="278" y="52" width="20" height="6" rx="1" fill="#66666660" />
 
-      {/* const seen = new Map() */}
-      <rect x="154" y="50" width="24" height="5" rx="1" fill="#569cd660" />
-      <rect x="182" y="50" width="20" height="5" rx="1" fill="#9cdcfe50" />
-      <rect x="206" y="50" width="44" height="5" rx="1" fill="#6b728050" />
+      {/* Line 2: const map = new Map() */}
+      <rect x="194" y="68" width="30" height="6" rx="1" fill="#569cd660" />
+      <rect x="228" y="68" width="22" height="6" rx="1" fill="#9cdcfe55" />
+      <rect x="254" y="68" width="52" height="6" rx="1" fill="#66666650" />
 
-      {/* for (let i = 0) */}
-      <rect x="154" y="62" width="16" height="5" rx="1" fill="#c586c060" />
-      <rect x="174" y="62" width="52" height="5" rx="1" fill="#9cdcfe50" />
+      {/* Line 3: for (let i = 0; i < nums.length; i++) { */}
+      <rect x="194" y="84" width="18" height="6" rx="1" fill="#c586c060" />
+      <rect x="216" y="84" width="66" height="6" rx="1" fill="#9cdcfe50" />
+      <rect x="286" y="84" width="32" height="6" rx="1" fill="#66666650" />
 
-      {/* if (seen.has...) — highlighted active line */}
-      <rect x="162" y="74" width="96" height="8" rx="1.5" fill="#00e5ff08" stroke="#00e5ff15" strokeWidth="0.5" />
-      <rect x="166" y="77" width="12" height="4" rx="1" fill="#c586c060" />
-      <rect x="182" y="77" width="64" height="4" rx="1" fill="#6b728060" />
+      {/* Line 4 — HIGHLIGHTED ACTIVE LINE */}
+      <rect x="178" y="98" width="256" height="16" rx="2" fill="#00e5ff09" stroke="#00e5ff14" strokeWidth="0.5" />
+      <rect x="202" y="103" width="16" height="5" rx="1" fill="#c586c060" />
+      <rect x="222" y="103" width="78" height="5" rx="1" fill="#66666660" />
+      <rect x="304" y="103" width="44" height="5" rx="1" fill="#9cdcfe55" />
 
-      {/* return [seen.get, i] */}
-      <rect x="170" y="88" width="22" height="5" rx="1" fill="#569cd660" />
-      <rect x="196" y="88" width="60" height="5" rx="1" fill="#00e5ff45" />
+      {/* Line 5: return [map.get(complement), i] */}
+      <rect x="210" y="118" width="24" height="6" rx="1" fill="#569cd660" />
+      <rect x="238" y="118" width="86" height="6" rx="1" fill="#00e5ff45" />
 
-      {/* seen.set(nums[i], i) */}
-      <rect x="162" y="100" width="80" height="5" rx="1" fill="#6b728060" />
+      {/* Line 6: map.set(nums[i], i) */}
+      <rect x="202" y="134" width="92" height="6" rx="1" fill="#66666655" />
 
-      {/* closing brackets */}
-      <rect x="154" y="112" width="6" height="5" rx="1" fill="#6b728060" />
-      <rect x="146" y="124" width="6" height="5" rx="1" fill="#6b728060" />
+      {/* Line 7: closing } */}
+      <rect x="194" y="150" width="7" height="6" rx="1" fill="#66666655" />
 
-      {/* AI translation panel at bottom */}
-      <rect x="128" y="152" width="182" height="38" rx="3" fill="#0d0d0d" stroke="#ffb30025" strokeWidth="0.5" />
-      <circle cx="140" cy="163" r="5" fill="#ffb300" opacity="0.5" />
-      <rect x="152" y="159" width="60" height="5" rx="1" fill="#ffb30035" />
-      <rect x="152" y="168" width="90" height="4" rx="1" fill="#ffb30020" />
-      {/* Language badges */}
-      {['JS', 'Py', 'Go', '+9'].map((lang, i) => (
+      {/* Line 8: closing } */}
+      <rect x="186" y="166" width="7" height="6" rx="1" fill="#66666655" />
+
+      {/* Lines 9-11: empty */}
+      <rect x="186" y="182" width="30" height="5" rx="1" fill="#1a1a1a" />
+      <rect x="186" y="198" width="48" height="5" rx="1" fill="#1a1a1a" />
+      <rect x="186" y="214" width="22" height="5" rx="1" fill="#1a1a1a" />
+
+      {/* ── AI Translation panel (y 252–300) fills to bottom ── */}
+      <rect x="155" y="252" width="285" height="48" fill="#0b0b0b" />
+      <rect x="155" y="252" width="285" height="1" fill="#ffb30018" />
+      <circle cx="174" cy="271" r="7" fill="#ffb300" opacity="0.45" />
+      <rect x="188" y="265" width="72" height="6" rx="1" fill="#ffb30030" />
+      <rect x="188" y="275" width="52" height="5" rx="1" fill="#ffb30018" />
+      {['JS', 'Py', 'Go', 'Rb', '+8'].map((lang, i) => (
         <g key={lang}>
-          <rect x={248 + i * 16} y={157} width="14" height="12" rx="2" fill="#ffb30015" stroke="#ffb30025" strokeWidth="0.5" />
-          <text x={255 + i * 16} y={165.5} fill="#ffb300" fontSize="5.5" textAnchor="middle" fontFamily="monospace">{lang}</text>
+          <rect x={272 + i * 28} y={261} width="24" height="18" rx="3" fill="#ffb30010" stroke="#ffb30020" strokeWidth="0.5" />
+          <text x={284 + i * 28} y={273} fill="#ffb300" fontSize="6.5" textAnchor="middle" fontFamily="monospace">{lang}</text>
         </g>
       ))}
+      {/* Progress bar at very bottom */}
+      <rect x="163" y="285" width="261" height="8" rx="1" fill="#111" />
+      <rect x="163" y="285" width="148" height="8" rx="1" fill="#ffb30016" />
     </svg>
   )
 }
