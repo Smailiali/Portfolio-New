@@ -40,14 +40,7 @@ const SOCIALS = [
 /* ============================================
    CONTACT SECTION
    ============================================ */
-/**
- * TODO: Replace with your Formspree form ID.
- * 1. Go to https://formspree.io and sign up (free tier handles 50 submissions/month)
- * 2. Create a new form — set the email to smailikhaledali@gmail.com
- * 3. Copy the form ID (e.g. "xpwzgkab") and paste it below
- */
-const FORMSPREE_ID = 'xbdzpdpp'
-const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`
+const FORMSPREE_URL = 'https://formspree.io/f/xbdzpdpp'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -57,17 +50,6 @@ export default function Contact() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-
-    // Fallback to mailto if Formspree ID hasn't been set yet
-    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-      const subject = encodeURIComponent(`Portfolio contact from ${formState.name}`)
-      const body = encodeURIComponent(
-        `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`
-      )
-      window.location.href = `mailto:smailikhaledali@gmail.com?subject=${subject}&body=${body}`
-      return
-    }
-
     setStatus('loading')
     try {
       const res = await fetch(FORMSPREE_URL, {
