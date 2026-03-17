@@ -10,8 +10,8 @@ export interface Project {
   description: string
   stack: string[]
   features: ProjectFeature[]
-  githubUrl: string  // TODO: Add real URL
-  demoUrl: string    // TODO: Add real URL
+  githubUrl: string
+  demoUrl: string
   accentColor: string
 }
 
@@ -29,8 +29,8 @@ export const projects: Project[] = [
       { icon: '🔍', label: 'Key term extraction' },
       { icon: '⏰', label: 'Automatic deadline detection' },
     ],
-    githubUrl: '#', // TODO: Add real GitHub URL
-    demoUrl: '#',   // TODO: Add real demo URL
+    githubUrl: 'https://github.com/Smailiali/docassist',
+    demoUrl: 'https://docassist-hazel.vercel.app/',
     accentColor: '#00e5ff',
   },
   {
@@ -46,8 +46,8 @@ export const projects: Project[] = [
       { icon: '🎯', label: '5-phase mock interview system' },
       { icon: '🌐', label: 'AI code translation across 12 languages' },
     ],
-    githubUrl: '#', // TODO: Add real GitHub URL
-    demoUrl: '#',   // TODO: Add real demo URL
+    githubUrl: 'https://github.com/Smailiali/DSA-Mastery',
+    demoUrl: 'https://dsa-mastery-ten.vercel.app/',
     accentColor: '#ffb300',
   },
 ]

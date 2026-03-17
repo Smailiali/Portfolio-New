@@ -341,30 +341,16 @@ export default function ProjectCard({ project, reverse = false, index = 0 }: Pro
         className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
       >
         {/* ── Mockup pane ── */}
+        {/* The SVG illustrations are self-contained browser mockups (include their own
+            traffic-light dots and URL bar), so no outer title bar wrapper needed here. */}
         <div className="lg:w-[55%] border-b lg:border-b-0 border-[var(--border)] relative overflow-hidden bg-[#080808]"
           style={{ borderRight: reverse ? 'none' : '1px solid var(--border)', borderLeft: reverse ? '1px solid var(--border)' : 'none' }}
         >
-          {/* Browser title bar */}
-          <div className="flex items-center gap-2 px-4 h-10 bg-[#111] border-b border-[var(--border)]">
-            <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
-            <span className="w-3 h-3 rounded-full" style={{ background: '#febc2e' }} />
-            <span className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
-            <div
-              className="mx-auto font-mono text-xs px-3 py-1 border border-[#2a2a2a]"
-              style={{ color: '#666', background: '#0d0d0d' }}
-            >
-              {project.id === 'docassist' ? 'docassist.app' : 'dsa-mastery.app'}
+          {illustration ?? (
+            <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center py-12">
+              <span className="font-mono text-xs text-[#333]">preview unavailable</span>
             </div>
-          </div>
-
-          {/* SVG illustration */}
-          <div className="aspect-[16/10] w-full overflow-hidden">
-            {illustration ?? (
-              <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center">
-                <span className="font-mono text-xs text-[#333]">preview unavailable</span>
-              </div>
-            )}
-          </div>
+          )}
         </div>
 
         {/* ── Info pane ── */}
@@ -432,7 +418,6 @@ export default function ProjectCard({ project, reverse = false, index = 0 }: Pro
               rel="noopener noreferrer"
               aria-label={`${project.title} GitHub repository`}
             >
-              {/* TODO: Add real URL */}
               ⎇ GitHub
             </a>
             <a
@@ -443,7 +428,6 @@ export default function ProjectCard({ project, reverse = false, index = 0 }: Pro
               aria-label={`${project.title} live demo`}
               style={{ background: project.accentColor }}
             >
-              {/* TODO: Add real URL */}
               ↗ Live Demo
             </a>
           </div>
