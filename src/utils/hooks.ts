@@ -170,7 +170,11 @@ export function useDynamicGreeting(): string {
 
 /* ============================================
    useTypingEffect
-   Cycles through an array of strings with a typewriter effect
+   Cycles through an array of strings with a typewriter effect.
+
+   Uses refs for the animation state so each step always reads
+   the *current* values — no stale-closure issues. The effect
+   runs once and self-schedules via a timer chain.
    ============================================ */
 export function useTypingEffect(
   strings: string[],
@@ -179,33 +183,54 @@ export function useTypingEffect(
   pauseDuration = 2000
 ) {
   const [displayText, setDisplayText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
+
+  // Mutable engine state — never stale in closures
+  const engineRef = useRef({ index: 0, text: '', isDeleting: false })
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const currentString = strings[currentIndex]
+    const tick = () => {
+      const { index, text, isDeleting } = engineRef.current
+      const currentString = strings[index]
 
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
-          setDisplayText(currentString.slice(0, displayText.length + 1))
-          if (displayText.length + 1 === currentString.length) {
-            // Pause at full string then start deleting
-            setTimeout(() => setIsDeleting(true), pauseDuration)
-          }
+      if (!isDeleting) {
+        // Type one more character
+        const next = currentString.slice(0, text.length + 1)
+        engineRef.current.text = next
+        setDisplayText(next)
+
+        if (next.length === currentString.length) {
+          // Fully typed — pause, then switch to deleting
+          timerRef.current = setTimeout(() => {
+            engineRef.current.isDeleting = true
+            timerRef.current = setTimeout(tick, deletingSpeed)
+          }, pauseDuration)
         } else {
-          setDisplayText(currentString.slice(0, displayText.length - 1))
-          if (displayText.length === 0) {
-            setIsDeleting(false)
-            setCurrentIndex((prev) => (prev + 1) % strings.length)
-          }
+          timerRef.current = setTimeout(tick, typingSpeed)
         }
-      },
-      isDeleting ? deletingSpeed : typingSpeed
-    )
+      } else {
+        // Delete one character
+        const next = text.slice(0, -1)
+        engineRef.current.text = next
+        setDisplayText(next)
 
-    return () => clearTimeout(timeout)
-  }, [displayText, currentIndex, isDeleting, strings, typingSpeed, deletingSpeed, pauseDuration])
+        if (next.length === 0) {
+          // Fully deleted — move to next string and start typing
+          engineRef.current.isDeleting = false
+          engineRef.current.index = (index + 1) % strings.length
+          timerRef.current = setTimeout(tick, typingSpeed)
+        } else {
+          timerRef.current = setTimeout(tick, deletingSpeed)
+        }
+      }
+    }
+
+    timerRef.current = setTimeout(tick, typingSpeed)
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // Intentionally runs once — strings/speeds are stable module-level constants
 
   return displayText
 }
