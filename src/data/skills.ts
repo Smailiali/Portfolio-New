@@ -13,38 +13,44 @@ export interface SkillGroup {
   skills: string[]
 }
 
+export const CATEGORY_COLORS: Record<SkillCategory, string> = {
+  languages: '#ffb300',   // amber
+  frontend:  '#00e5ff',   // cyan
+  backend:   '#22c55e',   // green
+  'ai-tools':'#a855f7',   // purple
+}
+
 export const skillGroups: SkillGroup[] = [
   {
     category: 'languages',
     label: 'Languages',
     command: '$ ls ~/skills/languages',
-    color: '#00e5ff',
+    color: CATEGORY_COLORS.languages,
     skills: ['JavaScript', 'TypeScript', 'Python', 'HTML', 'CSS', 'SQL'],
   },
   {
     category: 'frontend',
     label: 'Frontend',
     command: '$ ls ~/skills/frontend',
-    color: '#ffb300',
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'Responsive Design', 'Framer Motion'],
+    color: CATEGORY_COLORS.frontend,
+    skills: ['React', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'Responsive Design'],
   },
   {
     category: 'backend',
-    label: 'Backend',
+    label: 'Backend & Data',
     command: '$ ls ~/skills/backend',
-    color: '#00e5ff',
+    color: CATEGORY_COLORS.backend,
     skills: ['Node.js', 'Express.js', 'REST APIs', 'GraphQL', 'PostgreSQL', 'MongoDB'],
   },
   {
     category: 'ai-tools',
     label: 'AI & Tools',
     command: '$ ls ~/skills/ai-tools',
-    color: '#ffb300',
-    skills: ['Claude API', 'OpenAI API', 'Prompt Engineering', 'Git', 'GitHub', 'VS Code'],
+    color: CATEGORY_COLORS['ai-tools'],
+    skills: ['Claude API', 'OpenAI API', 'Prompt Engineering', 'Git', 'GitHub'],
   },
 ]
 
-// Flat skills list for constellation view
 export const allSkills: Skill[] = skillGroups.flatMap((group) =>
   group.skills.map((name) => ({ name, category: group.category }))
 )

@@ -365,3 +365,103 @@ body::before {
     padding: 0 3rem;
   }
 }
+
+/* ============================================
+   SKILL CONSTELLATION — NODE FLOAT ANIMATIONS
+   ============================================ */
+@keyframes nodeFloat1 {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(0px, -2px); }
+  66%       { transform: translate(1px, -1px); }
+}
+@keyframes nodeFloat2 {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(-1.5px, 1px); }
+  66%       { transform: translate(0px, 2px); }
+}
+@keyframes nodeFloat3 {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(1.5px, -1.5px); }
+  66%       { transform: translate(-1px, 1px); }
+}
+@keyframes nodeFloat4 {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(-1px, -2px); }
+  66%       { transform: translate(1.5px, 0px); }
+}
+
+/* ============================================
+   CONTACT — SEND BUTTON SWEEP
+   ============================================ */
+.btn-send-sweep {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 1rem 2rem;
+  width: 100%;
+  cursor: none;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn-send-sweep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: translateX(-101%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.btn-send-sweep:hover::before {
+  transform: translateX(0%);
+}
+
+.btn-send-sweep:hover {
+  color: #000;
+  border-color: var(--accent);
+}
+
+.btn-send-sweep .btn-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: gap 0.2s ease;
+}
+
+.btn-send-sweep:hover .btn-inner {
+  gap: 0.75rem;
+}
+
+/* ============================================
+   CONTACT FORM INPUT
+   ============================================ */
+.contact-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-input::placeholder {
+  color: var(--text-muted);
+}
+
+.contact-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 12px var(--accent-glow);
+}
