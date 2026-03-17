@@ -416,15 +416,19 @@ export default function ProjectCard({ project, reverse = false, index = 0 }: Pro
         {/* ── Mockup pane ── */}
         {/* The SVG illustrations are self-contained browser mockups (include their own
             traffic-light dots and URL bar), so no outer title bar wrapper needed here. */}
-        <div className="lg:w-[55%] border-b lg:border-b-0 border-[var(--border)] relative overflow-hidden bg-[#080808] aspect-[8/5] lg:aspect-auto"
+        <div className="lg:w-[55%] border-b lg:border-b-0 border-[var(--border)]"
           style={{ borderRight: reverse ? 'none' : '1px solid var(--border)', borderLeft: reverse ? '1px solid var(--border)' : 'none' }}
         >
+          {/* Aspect-ratio wrapper matches the SVG viewBox (440×300 = 22:15) exactly,
+              so the SVG fills edge-to-edge with no black bars at any viewport width. */}
+          <div style={{ aspectRatio: '440 / 300', width: '100%' }}>
           {illustration ?? (
-            <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center py-12">
+            <div className="w-full h-full flex items-center justify-center" style={{ background: '#0d0d0d' }}>
               <span className="font-mono text-xs text-[#333]">preview unavailable</span>
             </div>
           )}
-        </div>
+          </div>{/* end aspect-ratio wrapper */}
+        </div>{/* end mockup pane */}
 
         {/* ── Info pane ── */}
         <div className="lg:w-[45%] p-6 md:p-8 flex flex-col justify-center gap-5">
