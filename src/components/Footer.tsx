@@ -25,10 +25,12 @@ export default function Footer() {
 
           {/* Right */}
           <div className="flex items-center gap-4">
-            {/* TODO: Add real GitHub repo URL */}
+            {/* TODO: Replace with real portfolio GitHub repo URL when published */}
             <a
-              href="#"
-              className="font-mono text-xs transition-colors duration-200"
+              href="https://github.com/Smailiali"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs transition-colors duration-200 hover:text-[var(--accent)]"
               style={{ color: 'var(--text-muted)' }}
               aria-label="View source on GitHub"
             >
@@ -43,6 +45,15 @@ export default function Footer() {
             </p>
           </div>
         </div>
+
+        {/* Konami code hint — visible, tasteful */}
+        <p
+          className="font-mono text-center mt-6"
+          style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.06em' }}
+        >
+          <span style={{ opacity: 0.5 }}>{'// '}</span>
+          {'↑ ↑ ↓ ↓ ← → ← → B A'}
+        </p>
       </div>
     </footer>
   )

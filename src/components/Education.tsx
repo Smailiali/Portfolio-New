@@ -59,7 +59,7 @@ export default function Education() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="relative p-5"
+              className="relative p-5 group"
               style={{
                 background: 'var(--surface)',
                 border: '1px solid var(--border)',
@@ -86,9 +86,9 @@ export default function Education() {
                 {src.detail}
               </p>
 
-              {/* Bottom accent line */}
+              {/* Bottom accent line — expands on card hover */}
               <div
-                className="absolute bottom-0 left-0 h-px w-0 transition-all duration-500"
+                className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-500"
                 style={{ background: 'var(--accent)' }}
               />
             </motion.div>

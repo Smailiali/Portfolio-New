@@ -1,5 +1,7 @@
 'use client'
 
+// To enable resume download, place your resume file at: public/Ali_Smaili_Resume.pdf
+
 import { useMemo, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTypingEffect, useDynamicGreeting } from '@/utils/hooks'
@@ -320,13 +322,16 @@ export default function Hero({ isReady }: HeroProps) {
               <button
                 className="btn-primary cursor-none"
                 onClick={scrollToProjects}
+                aria-label="View projects section"
               >
                 [View Projects]
               </button>
+              {/* TODO: Place your resume at public/Ali_Smaili_Resume.pdf */}
               <a
                 className="btn-outline cursor-none"
                 href="/Ali_Smaili_Resume.pdf"
                 download
+                aria-label="Download Ali Smaili's resume PDF"
               >
                 [Download Resume]
               </a>
