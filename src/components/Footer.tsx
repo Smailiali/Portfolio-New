@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             {/* TODO: Replace with real portfolio GitHub repo URL when published */}
             <a
-              href="https://github.com/Smailiali"
+              href="https://github.com/Smailiali/Portfolio-New"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-xs transition-colors duration-200 hover:text-[var(--accent)]"
