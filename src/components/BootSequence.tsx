@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react' // useRef kept for completedRef
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface BootSequenceProps {
@@ -15,14 +15,14 @@ const LINES = [
   '> ready.',
 ]
 
-const LINE_DELAYS = [0, 350, 750, 1100, 1450]
+// Lines appear at: 0ms, 600ms, 1400ms (after bar fills), 2400ms, 3400ms
+const LINE_DELAYS = [0, 600, 2600, 3400, 4200]
 
 export default function BootSequence({ onComplete }: BootSequenceProps) {
   const [isVisible, setIsVisible] = useState(true)
   const [visibleLines, setVisibleLines] = useState<number[]>([])
   const [barWidth, setBarWidth] = useState(0)
   const [barComplete, setBarComplete] = useState(false)
-  const skipRef = useRef(false)
   const completedRef = useRef(false)
 
   const handleComplete = () => {
@@ -33,12 +33,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
   }
 
   useEffect(() => {
-    // Check if already played this session
-    if (sessionStorage.getItem('portfolio_boot_played')) {
-      skipRef.current = true
-      setIsVisible(false)
-      return
-    }
+    // Boot sequence plays on every page load — no sessionStorage skip.
 
     // Show lines one by one
     const timers: ReturnType<typeof setTimeout>[] = []
@@ -51,16 +46,18 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
       )
     })
 
-    // Progress bar: starts filling after line 1 appears (~750ms)
+    // Progress bar: starts filling ~200ms after line 1 appears (800ms total)
+    // Takes 1.6s to fill — feels like real loading
     timers.push(
       setTimeout(() => {
-        // Animate bar from 0 to 100 over 500ms
         const start = performance.now()
-        const duration = 500
+        const duration = 1600
         const tick = (now: number) => {
           const elapsed = now - start
           const progress = Math.min(elapsed / duration, 1)
-          setBarWidth(progress * 100)
+          // Ease-out cubic so bar accelerates at start and eases at the end
+          const eased = 1 - Math.pow(1 - progress, 3)
+          setBarWidth(eased * 100)
           if (progress < 1) {
             requestAnimationFrame(tick)
           } else {
@@ -68,15 +65,14 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           }
         }
         requestAnimationFrame(tick)
-      }, 750)
+      }, 800)
     )
 
-    // Start exit after 2000ms
+    // Fade out: "ready." has been visible for ~900ms before overlay exits
     timers.push(
       setTimeout(() => {
-        sessionStorage.setItem('portfolio_boot_played', '1')
         setIsVisible(false)
-      }, 2000)
+      }, 5100)
     )
 
     return () => timers.forEach(t => clearTimeout(t))
@@ -95,7 +91,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           className="fixed inset-0 z-[100] flex flex-col justify-center items-start bg-[#0a0a0a]"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: skipRef.current ? 0 : 0.6 }}
+          transition={{ duration: 0.6 }}
         >
           {/* Decorative corners */}
           <span
