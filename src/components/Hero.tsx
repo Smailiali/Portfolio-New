@@ -223,7 +223,12 @@ interface HeroProps {
   isReady: boolean
 }
 
-const TAGLINES = ['Full-Stack Developer', 'AI Tool Builder', 'Problem Solver', 'System Thinker']
+const TAGLINES = [
+  'Software Developer',
+  'Full-Stack Engineer',
+  'AI Solutions Architect',
+  'Automation Engineer',
+]
 
 const containerVariants = {
   hidden: {},
