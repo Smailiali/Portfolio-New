@@ -40,27 +40,50 @@ const SOCIALS = [
 /* ============================================
    CONTACT SECTION
    ============================================ */
+/**
+ * TODO: Replace with your Formspree form ID.
+ * 1. Go to https://formspree.io and sign up (free tier handles 50 submissions/month)
+ * 2. Create a new form — set the email to smailikhaledali@gmail.com
+ * 3. Copy the form ID (e.g. "xpwzgkab") and paste it below
+ */
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
+const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`
+
+type Status = 'idle' | 'loading' | 'success' | 'error'
+
 export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<Status>('idle')
 
-  /**
-   * TODO: Wire up real form submission here.
-   * Options:
-   *   - EmailJS: import emailjs from '@emailjs/browser' and call emailjs.send(...)
-   *   - Formspree: change action to 'https://formspree.io/f/YOUR_ID' and method to POST
-   *   - Resend / Nodemailer via a Next.js API route
-   * For now, falls back to mailto: link so nothing is lost.
-   */
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio contact from ${formState.name}`)
-    const body = encodeURIComponent(
-      `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`
-    )
-    window.location.href = `mailto:smailikhaledali@gmail.com?subject=${subject}&body=${body}`
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
+
+    // Fallback to mailto if Formspree ID hasn't been set yet
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+      const subject = encodeURIComponent(`Portfolio contact from ${formState.name}`)
+      const body = encodeURIComponent(
+        `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`
+      )
+      window.location.href = `mailto:smailikhaledali@gmail.com?subject=${subject}&body=${body}`
+      return
+    }
+
+    setStatus('loading')
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formState),
+      })
+      if (res.ok) {
+        setStatus('success')
+        setFormState({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -163,10 +186,20 @@ export default function Contact() {
             </div>
 
             {/* Submit */}
-            <button type="submit" className="btn-send-sweep mt-2">
+            <button
+              type="submit"
+              className="btn-send-sweep mt-2"
+              disabled={status === 'loading' || status === 'success'}
+              style={{ opacity: status === 'loading' ? 0.7 : 1 }}
+            >
               <span className="btn-inner">
-                <span>{sent ? 'Opening mail client…' : 'Send Message'}</span>
-                {!sent && (
+                <span>
+                  {status === 'loading' && 'Sending…'}
+                  {status === 'success' && 'Message Sent ✓'}
+                  {status === 'error' && 'Try Again'}
+                  {status === 'idle' && 'Send Message'}
+                </span>
+                {status === 'idle' && (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M22 2L11 13" />
                     <path d="M22 2L15 22 11 13 2 9l20-7z" />
@@ -174,6 +207,21 @@ export default function Contact() {
                 )}
               </span>
             </button>
+
+            {/* Status messages */}
+            {status === 'success' && (
+              <p className="font-mono text-sm" style={{ color: '#22c55e' }}>
+                {"Thanks — I'll get back to you within 24 hours."}
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="font-mono text-sm" style={{ color: '#f87171' }}>
+                Something went wrong. Email me directly at{' '}
+                <a href="mailto:smailikhaledali@gmail.com" style={{ color: 'var(--accent)' }}>
+                  smailikhaledali@gmail.com
+                </a>
+              </p>
+            )}
           </motion.form>
 
           {/* Sidebar — 2/5 width */}
