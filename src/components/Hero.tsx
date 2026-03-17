@@ -245,7 +245,7 @@ const itemVariants = {
 }
 
 export default function Hero({ isReady }: HeroProps) {
-  const displayText = useTypingEffect(TAGLINES)
+  const displayText = useTypingEffect(TAGLINES, 80, 40, 2000, isReady)
   const greeting = useDynamicGreeting()
 
   const scrollToProjects = () => {

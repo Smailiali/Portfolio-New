@@ -180,7 +180,8 @@ export function useTypingEffect(
   strings: string[],
   typingSpeed = 80,
   deletingSpeed = 40,
-  pauseDuration = 2000
+  pauseDuration = 2000,
+  enabled = true
 ) {
   const [displayText, setDisplayText] = useState('')
 
@@ -189,6 +190,8 @@ export function useTypingEffect(
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
+    if (!enabled) return
+
     const tick = () => {
       const { index, text, isDeleting } = engineRef.current
       const currentString = strings[index]
@@ -230,7 +233,7 @@ export function useTypingEffect(
       if (timerRef.current) clearTimeout(timerRef.current)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // Intentionally runs once — strings/speeds are stable module-level constants
+  }, [enabled]) // Re-runs when boot completes and enabled flips to true
 
   return displayText
 }
