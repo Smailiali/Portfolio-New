@@ -122,17 +122,19 @@ export default function CommandPalette({
     setActiveIndex(0)
   }, [filtered.length])
 
-  /* On open: save focus, reset state, auto-focus input */
+  /* On open: save focus, reset state, auto-focus input, lock body scroll */
   useEffect(() => {
     if (isOpen) {
       previousFocusRef.current = document.activeElement
       setQuery('')
       setActiveIndex(0)
+      document.body.style.overflow = 'hidden'
       setTimeout(() => inputRef.current?.focus(), 50)
     } else {
-      // Restore focus on close
+      document.body.style.overflow = ''
       ;(previousFocusRef.current as HTMLElement | null)?.focus?.()
     }
+    return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
   /* Execute a command then close */
@@ -300,8 +302,9 @@ export default function CommandPalette({
                     aria-selected={i === activeIndex}
                     onMouseEnter={() => setActiveIndex(i)}
                     onClick={() => execute(cmd)}
-                    className="flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors duration-100"
+                    className="flex items-center gap-3 px-4 cursor-pointer transition-colors duration-100"
                     style={{
+                      minHeight: '44px',
                       background:
                         i === activeIndex
                           ? 'rgba(0,229,255,0.07)'
@@ -319,7 +322,7 @@ export default function CommandPalette({
 
                     {/* Label */}
                     <span
-                      className="flex-1 font-mono text-sm"
+                      className="flex-1 font-mono text-sm truncate"
                       style={{
                         color:
                           i === activeIndex
@@ -330,10 +333,10 @@ export default function CommandPalette({
                       {cmd.label}
                     </span>
 
-                    {/* Description hint */}
+                    {/* Description hint — hidden on small screens */}
                     <span
-                      className="font-mono text-xs"
-                      style={{ color: 'var(--text-muted)' }}
+                      className="font-mono text-xs hidden sm:block"
+                      style={{ color: 'var(--text-muted)', flexShrink: 0 }}
                     >
                       {cmd.description}
                     </span>
@@ -342,9 +345,9 @@ export default function CommandPalette({
               )}
             </ul>
 
-            {/* Footer hint */}
+            {/* Footer hint — keyboard shortcuts, hidden on touch devices */}
             <div
-              className="flex items-center gap-4 px-4 py-2 font-mono text-xs"
+              className="hidden sm:flex items-center gap-4 px-4 py-2 font-mono text-xs"
               style={{
                 borderTop: '1px solid #1a1a1a',
                 color: 'var(--text-muted)',

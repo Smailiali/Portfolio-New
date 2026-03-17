@@ -18,32 +18,38 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Ali Smaili — Software Developer',
   description:
-    'Full-stack developer based in Irvine, CA. I build AI-powered tools and web apps that solve real problems.',
+    'Full-stack developer specializing in React, Node.js, and AI-integrated tools. Building real-world solutions that drive measurable impact.',
   keywords: [
-    'Ali Smaili',
-    'Software Developer',
-    'Full-Stack Developer',
+    'software developer',
+    'full-stack',
     'React',
-    'Next.js',
+    'Node.js',
     'TypeScript',
-    'AI Developer',
-    'Irvine CA',
+    'AI',
+    'portfolio',
+    'Ali Smaili',
   ],
   authors: [{ name: 'Ali Smaili' }],
   creator: 'Ali Smaili',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     title: 'Ali Smaili — Software Developer',
     description:
-      'Full-stack developer based in Irvine, CA. I build AI-powered tools and web apps that solve real problems.',
+      'Full-stack developer specializing in React, Node.js, and AI-integrated tools. Building real-world solutions that drive measurable impact.',
     siteName: 'Ali Smaili Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ali Smaili — Software Developer',
     description:
-      'Full-stack developer based in Irvine, CA. I build AI-powered tools and web apps that solve real problems.',
+      'Full-stack developer specializing in React, Node.js, and AI-integrated tools. Building real-world solutions that drive measurable impact.',
   },
   robots: {
     index: true,

@@ -530,14 +530,27 @@ body::before {
   background: rgba(17, 17, 17, 0.9);
   border: 1px solid rgba(0, 229, 255, 0.2);
   padding: 0.35rem 0.75rem;
+  min-height: 44px;
+  min-width: 44px;
   cursor: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   backdrop-filter: blur(8px);
   /* 2s initial delay so it doesn't fire during boot sequence */
   animation: cmdBadgeBreathe 10s linear 2s infinite;
   transition: color 0.2s ease, box-shadow 0.15s ease;
+}
+
+/* Larger tap target and safe distance from edge on touch screens */
+@media (pointer: coarse) {
+  .cmd-hint-badge {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+  }
 }
 
 .cmd-hint-badge:hover {
