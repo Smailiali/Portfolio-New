@@ -12,10 +12,19 @@ const NAV_LINKS = [
   { label: 'cd ~/contact', href: '#contact', section: 'contact' },
 ]
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenPalette?: () => void
+}
+
+export default function Navbar({ onOpenPalette }: NavbarProps) {
   const scrollY = useScrollY()
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const [isMac, setIsMac] = useState(false)
+
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent))
+  }, [])
 
   const isScrolled = scrollY > 20
 
@@ -107,6 +116,18 @@ export default function Navbar() {
                 )}
               </a>
             ))}
+
+            {/* ⌘K shortcut indicator */}
+            {onOpenPalette && (
+              <button
+                onClick={onOpenPalette}
+                className="nav-shortcut-pill cursor-none"
+                aria-label={`Open command palette (${isMac ? '⌘K' : 'Ctrl+K'})`}
+                title="Command palette"
+              >
+                {isMac ? '⌘K' : 'Ctrl+K'}
+              </button>
+            )}
           </nav>
 
           {/* Mobile hamburger */}
